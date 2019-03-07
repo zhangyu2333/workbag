@@ -1,0 +1,46 @@
+<style lang="">
+    
+</style>
+<template>
+    <view>
+        <formatData :title.sync="infos"></formatData>
+    </view>
+</template>
+<script>
+import wepy from 'wepy';
+import { connect } from 'wepy-redux';
+import { SET_USERINFO,GET_USERINFO } from '../store/types'
+import { getUserInfo } from '../store/actions'
+import { test } from '../api/request'
+import FormatData from '../components/formatData';
+
+@connect({
+    infos:(state) => {
+        return state.info
+    },
+
+},{
+    SET_USERINFO,
+    getUserInfo
+})
+export default class Index extends wepy.page {
+    data = {
+        
+    }
+
+    onLoad() {
+        test((res)=>{
+            this.methods.getUserInfo({
+                data:res.data.data
+            })
+        })
+    }
+
+    onShow() {
+        console.log(this)
+    }
+    components = {
+        formatData:FormatData
+    }
+}
+</script>

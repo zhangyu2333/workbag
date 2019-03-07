@@ -1,0 +1,51 @@
+<style lang="less">
+  
+</style>
+<template>
+  <view @tap="click">
+    {{index}}
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { test } from '../api/request.js'
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'home',
+      "navigationBarBackgroundColor": "#f50",
+    }
+    components = {
+      
+    }
+
+    data = {
+      index:"132"
+       
+    }
+
+    computed = {
+      
+    }
+
+    methods = {
+      click : async () => {
+        let data = await test();
+        this.index = data.data.data['测试数据'] + new Date();
+        console.log(data.data.data['测试数据'])
+        this.$apply();
+      }
+      
+    }
+
+    events = {
+      
+    }
+
+    onLoad() {
+      // test().then((res)=>{
+      //   console.log(res.data)
+      // })
+    }
+  }
+</script>

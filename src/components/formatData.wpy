@@ -1,0 +1,50 @@
+<style lang="less" scoped>
+    .name{
+        width: 100%;
+        padding:0 20rpx;
+        box-sizing: border-box;
+        view{
+            line-height: 60rpx;
+            text-align: center;
+            color:#f50;
+        }
+        .images{
+            width: 100rpx;
+        }
+    }
+</style>
+<template>
+    <view>
+        <view @tap="showThis">{{title.info}}</view>
+        <view class="name">
+            <view>
+                {{title.users.username}}
+            </view>
+        </view>
+        <view>{{title.users.userid}}</view>
+        <image src="{{title.users.pic}}" mode="widthFix"
+          lazy-load="false" style="width:200rpx">
+        </image>
+    </view>
+</template>
+<script>
+import wepy from 'wepy';
+export default class FormatData extends wepy.component {
+
+    data = {
+        date:"2019"
+    }
+
+    methods = {
+        showThis() {
+            console.log(this)
+        }
+    }
+    props = {
+        title:{
+            type:Object,
+            default:{}
+        }
+    }
+}
+</script>
